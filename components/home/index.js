@@ -18,19 +18,10 @@ class Home extends Base {
     this.displayName = 'Home';
   }
 
-  handleClick () {
-    alert('Clientside clicked');
-    //update
-    this.props.cursor.cursor('home').update('title', function () {
-      return 'new title updated!!!';
-    });
-  }
-
   render () {
     return (
       <div>
-        <HeroNav cursor={this.props.cursor.cursor(['app', 'taxonomy'])}/>
-        <h2 onClick={this.handleClick.bind(this)}>{this.props.cursor.cursor('home').get('title')}</h2>
+        <HeroNav data={this.props.data.app.taxonomy}/>
         <Link to="plp">Page 2</Link>
       </div>
     );

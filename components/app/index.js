@@ -20,7 +20,7 @@ class App extends Base {
     return (
       <div>
         <header>
-          <GlobalHeader cursor={this.props.cursor.cursor(['app', 'search'])}/>
+          <GlobalHeader data={this.props.data.app.search}/>
         </header>
         <section>
           {/* Render Main Content */}

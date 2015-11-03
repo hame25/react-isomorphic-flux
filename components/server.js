@@ -33,9 +33,6 @@ export default () => {
           getGlobalData().then((appData) => {
 
             data.app = appData;
-            data = Immutable.fromJS(data);
-          
-            let cursor = Cursor.from(data);
 
             let templateLocals = {
               "data": data
@@ -43,7 +40,7 @@ export default () => {
           
             templateLocals.content = React.renderToString(
           
-            <Handler cursor={cursor}/>
+            <Handler data={data}/>
           );
           res.send(layout(templateLocals));
         });

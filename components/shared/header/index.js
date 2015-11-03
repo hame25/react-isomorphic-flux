@@ -12,7 +12,7 @@ class GlobalHeader extends Base {
   render () {
     return (
       <div id="global-header">
-        <Search cursor={this.props.cursor}/>
+        <Search data={this.props.data}/>
       </div>
     );
   }

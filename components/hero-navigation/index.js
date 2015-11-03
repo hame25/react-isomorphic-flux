@@ -10,7 +10,7 @@ class HeroNav extends Base {
   }
 
   render () {
-    let taxonomy = this.props.cursor.deref();
+    let taxonomy = this.props.data;
 
     return (
       <div id="hero-nav">

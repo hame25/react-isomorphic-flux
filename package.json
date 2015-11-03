@@ -19,7 +19,7 @@
     "jade": "^1.11.0",
     "path": "^0.11.14",
     "react": "^0.13.3",
-    "react-router": "^0.13.3",
+    "react-router": "^0.13.4",
     "shallowequal": "^0.2.2",
     "url": "^0.10.3",
     "whatwg-fetch": "^0.9.0",
