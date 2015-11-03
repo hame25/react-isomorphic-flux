@@ -5,7 +5,7 @@ import shallowEqual from 'shallowequal';
 
 class Base extends React.Component {
   
-  shouldComponentUpdate (nextProps, nextState) {
+  /*shouldComponentUpdate (nextProps, nextState) {
       console.log('Rerender ' + this.displayName + '?')
       if(nextProps.cursor !== undefined && (nextProps.cursor.deref() !== this.props.cursor.deref())) {
         console.log('*** Render ' + this.displayName + ' cursor ***');
@@ -13,7 +13,7 @@ class Base extends React.Component {
       }
 
       return false;
-   }
+   }*/
 }
 
 export default Base;

@@ -20,7 +20,6 @@ class plp extends Base {
   }
 
   render () {
-    console.log(this.props.data.plp)
     return (
       <div>
         <div className='plp-page'>
