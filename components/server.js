@@ -10,6 +10,8 @@ import config from '../config';
 import fetch from 'isomorphic-fetch';
 import url from 'url';
 
+//import AppStore from '../stores/';
+
 let layoutPath = joinPath(__dirname, 'layout.jade');
 let layout = compileFile(layoutPath);
 
@@ -33,6 +35,8 @@ export default () => {
           getGlobalData().then((appData) => {
 
             data.app = appData;
+
+            //AppStore.setInitialData(data);
 
             let templateLocals = {
               "data": data

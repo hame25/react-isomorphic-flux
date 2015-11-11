@@ -14,6 +14,10 @@ class Base extends React.Component {
 
       return false;
    }*/
+  /* shouldComponentUpdate (nextProps, nextState) {
+   	 return !shallowEqual(this.props, nextProps) ||
+           !shallowEqual(this.state, nextState)
+   }*/
 }
 
 export default Base;
