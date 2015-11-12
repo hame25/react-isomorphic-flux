@@ -32,12 +32,12 @@ class Store extends EventEmitter {
     return this.state;
   }
 
-  loadData () {
-    var immutableItem = Immutable.fromJS({test: 'alex'});
-    console.log(this.state);
+  loadData (data) {
+    var immutableItem = Immutable.fromJS(data);
+   // console.log(this.state);
     //this.state = this.state.updateIn(['cart', 'items'], items => items.push(immutableItem));
     this.state.merge(immutableItem);
-    console.log(this.state);
+    //console.log(this.state);
     this.emit(CHANGE_EVENT);
   }
 }

@@ -93,7 +93,6 @@
 		});
 
 		function render() {
-			console.log(store.getState());
 			_react2['default'].render(_react2['default'].createElement(Handler, { data: data }), content);
 			//React.render(<Handler data = {store.getState()}/>, content);
 		}
@@ -102,6 +101,7 @@
 			(0, _utilsFetchData2['default'])(req).then(function (pageData) {
 				var objKey = Object.keys(pageData)[0];
 				data[objKey] = pageData[objKey];
+				//AppStore.load(pageData);
 
 				//AppStore.setInitialData(data);
 
@@ -112,8 +112,7 @@
 			});
 		}
 
-		//getDataToRender();
-		render();
+		getDataToRender();
 	});
 
 /***/ },
@@ -28875,12 +28874,12 @@
 	    }
 	  }, {
 	    key: 'loadData',
-	    value: function loadData() {
-	      var immutableItem = _immutable2['default'].fromJS({ test: 'alex' });
-	      console.log(this.state);
+	    value: function loadData(data) {
+	      var immutableItem = _immutable2['default'].fromJS(data);
+	      // console.log(this.state);
 	      //this.state = this.state.updateIn(['cart', 'items'], items => items.push(immutableItem));
 	      this.state.merge(immutableItem);
-	      console.log(this.state);
+	      //console.log(this.state);
 	      this.emit(CHANGE_EVENT);
 	    }
 	  }]);

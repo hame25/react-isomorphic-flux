@@ -27,7 +27,6 @@ Router.run(routes, Router.HistoryLocation, function (Handler, req) {
    });
 
 	function render() {
-		console.log(store.getState())
 		React.render(<Handler data = {data}/>, content);
 		//React.render(<Handler data = {store.getState()}/>, content);
 	} 
@@ -36,6 +35,7 @@ Router.run(routes, Router.HistoryLocation, function (Handler, req) {
 		fetchData(req).then((pageData) => {
 			let objKey = Object.keys(pageData)[0];
 			data[objKey] = pageData[objKey];
+			//AppStore.load(pageData);
 
 			//AppStore.setInitialData(data);
 
@@ -46,6 +46,5 @@ Router.run(routes, Router.HistoryLocation, function (Handler, req) {
     });
 	}
 
-	//getDataToRender();
-	render();
+	getDataToRender();
 });
