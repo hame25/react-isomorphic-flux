@@ -26,7 +26,7 @@ class plp extends Base {
           <ProductList data={this.props.data.plp.products}/>
         </div>
       </div>
-    );
+    ); 
   }
 }
 

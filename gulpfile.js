@@ -28,7 +28,7 @@ gulp.task("webpack", function(callback) {
 
 
 gulp.task('build-dev', ['webpack'], function() {
-    gulp.watch(["./components/**/*"], ['webpack']);
+    gulp.watch(["./components/**/*", "./stores/**/*", "./actions/**/*", "./dispatcher/**/*"], ['webpack']);
 });
 
 gulp.task('default', ['build-dev'], function () {

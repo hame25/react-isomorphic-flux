@@ -16,7 +16,6 @@ class App extends Base {
   }
 
   render () {
-
     return (
       <div>
         <header>

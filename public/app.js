@@ -79,7 +79,8 @@
 	var CHANGE_EVENT = 'change';
 
 	var content = document.getElementById('content');
-	var data = JSON.parse(document.getElementById('initial-data').innerHTML);
+	var initialData = JSON.parse(document.getElementById('initial-data').innerHTML);
+	var data = initialData;
 
 	var store = new _storesStore2['default'](_dispatcher2['default'], data);
 
@@ -92,26 +93,29 @@
 			render();
 		});
 
+		function isEmpty(obj) {
+			return Object.keys(obj).length === 0;
+		}
+
 		function render() {
-			_react2['default'].render(_react2['default'].createElement(Handler, { data: data }), content);
-			//React.render(<Handler data = {store.getState()}/>, content);
+			_react2['default'].render(_react2['default'].createElement(Handler, { data: store.getState().toJS() }), content);
 		}
 
 		function getDataToRender() {
-			(0, _utilsFetchData2['default'])(req).then(function (pageData) {
-				var objKey = Object.keys(pageData)[0];
-				data[objKey] = pageData[objKey];
-				//AppStore.load(pageData);
+			if (isEmpty(initialData)) {
 
-				//AppStore.setInitialData(data);
+				(0, _utilsFetchData2['default'])(req).then(function (pageData) {
 
+					store.loadData(pageData);
+				})['catch'](function () {
+					//window.location = `/500.html`;
+					console.log('error');
+				});
+			} else {
+				initialData = {};
 				render();
-			})['catch'](function () {
-				//window.location = `/500.html`;
-				console.log('error');
-			});
+			}
 		}
-
 		getDataToRender();
 	});
 
@@ -22021,7 +22025,6 @@
 	  _createClass(App, [{
 	    key: 'render',
 	    value: function render() {
-
 	      return _react2['default'].createElement(
 	        'div',
 	        null,
@@ -28849,8 +28852,6 @@
 	    var self = this;
 
 	    state = state || {};
-	    //state = _.merge({}, Store.defaultState, state);
-	    //state = assign({}, Store.defaultState, state));
 
 	    // Register handlers
 	    dispatcher.register(function (action) {
@@ -28865,8 +28866,6 @@
 	    this.state = _immutable2['default'].fromJS(state);
 	  }
 
-	  // Default state
-
 	  _createClass(Store, [{
 	    key: 'getState',
 	    value: function getState() {
@@ -28875,21 +28874,18 @@
 	  }, {
 	    key: 'loadData',
 	    value: function loadData(data) {
+
 	      var immutableItem = _immutable2['default'].fromJS(data);
-	      // console.log(this.state);
-	      //this.state = this.state.updateIn(['cart', 'items'], items => items.push(immutableItem));
-	      this.state.merge(immutableItem);
-	      //console.log(this.state);
+
+	      var y = this.state.mergeDeep(immutableItem).toJS();
+	      this.state = _immutable2['default'].fromJS(y);
+
 	      this.emit(CHANGE_EVENT);
 	    }
 	  }]);
 
 	  return Store;
 	})(_events.EventEmitter);
-
-	Store.defaultState = {
-	  title: 'hello world'
-	};
 
 	exports['default'] = Store;
 	module.exports = exports['default'];

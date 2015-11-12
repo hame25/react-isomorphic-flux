@@ -11,7 +11,8 @@ import dispatcher from '../dispatcher/';
 const CHANGE_EVENT = 'change';
 
 let content = document.getElementById('content');
-let data = JSON.parse(document.getElementById('initial-data').innerHTML);
+let initialData = JSON.parse(document.getElementById('initial-data').innerHTML);
+let data = initialData;
 
 let store = new Store(dispatcher, data);
 
@@ -26,25 +27,29 @@ Router.run(routes, Router.HistoryLocation, function (Handler, req) {
       render();
    });
 
+	function isEmpty(obj) {
+    return Object.keys(obj).length === 0;
+  }
+
 	function render() {
-		React.render(<Handler data = {data}/>, content);
-		//React.render(<Handler data = {store.getState()}/>, content);
+		React.render(<Handler data = {store.getState().toJS()}/>, content);
 	} 
 
 	function getDataToRender () {
-		fetchData(req).then((pageData) => {
-			let objKey = Object.keys(pageData)[0];
-			data[objKey] = pageData[objKey];
-			//AppStore.load(pageData);
+		if (isEmpty(initialData)) {
 
-			//AppStore.setInitialData(data);
+			fetchData(req).then((pageData) => {
+		
+				store.loadData(pageData);
 
+			}).catch(() => {
+	      //window.location = `/500.html`;
+	      console.log('error');
+	    });
+		} else {
+			initialData = {};
 			render();
-		}).catch(() => {
-      //window.location = `/500.html`;
-      console.log('error');
-    });
+		}
 	}
-
 	getDataToRender();
 });

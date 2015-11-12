@@ -12,8 +12,6 @@ class Store extends EventEmitter {
     let self = this;
 
     state = state || {};
-    //state = _.merge({}, Store.defaultState, state);
-    //state = assign({}, Store.defaultState, state));
 
     // Register handlers
     dispatcher.register(function (action) {
@@ -33,18 +31,14 @@ class Store extends EventEmitter {
   }
 
   loadData (data) {
-    var immutableItem = Immutable.fromJS(data);
-   // console.log(this.state);
-    //this.state = this.state.updateIn(['cart', 'items'], items => items.push(immutableItem));
-    this.state.merge(immutableItem);
-    //console.log(this.state);
+
+    let immutableItem = Immutable.fromJS(data);
+
+    let y = this.state.mergeDeep(immutableItem).toJS();
+    this.state = Immutable.fromJS(y);
+   
     this.emit(CHANGE_EVENT);
   }
 }
-
-// Default state
-Store.defaultState = {
-  title: 'hello world'
-};
 
 export default Store;
