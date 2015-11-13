@@ -21,7 +21,7 @@ class Home extends Base {
   render () {
     return (
       <div>
-        <HeroNav data={this.props.data.app.taxonomy}/>
+        <HeroNav data={this.props.data.getIn(['app', 'taxonomy'])}/>
         <Link to="plp">Page 2</Link>
       </div>
     );

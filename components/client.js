@@ -32,7 +32,7 @@ Router.run(routes, Router.HistoryLocation, function (Handler, req) {
   }
 
 	function render() {
-		React.render(<Handler data = {store.getState().toJS()}/>, content);
+		React.render(<Handler data = {store.getState()}/>, content);
 	} 
 
 	function getDataToRender () {

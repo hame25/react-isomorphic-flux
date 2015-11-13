@@ -32,7 +32,7 @@ class Search extends Base {
       <div id="global-search">
         <form>
           <label>Search</label>
-          <input type="input" placeholder="I'm looking for"  defaultValue={this.props.data.query} ref="searchBox"/>
+          <input type="input" placeholder="I'm looking for"  defaultValue={this.props.data.get('query')} ref="searchBox"/>
           <button type="submit" name="submit-search" >Search</button>
         </form>
       </div>  

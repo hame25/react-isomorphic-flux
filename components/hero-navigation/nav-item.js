@@ -10,10 +10,11 @@ class NavItem extends Base {
 
   render () {
     let item = this.props.item;
+
     return (
       <li key={this.props.key}>
-        <a href={item.url}>
-          {item.name}
+        <a href={item.get('url')}>
+          {item.get('name')}
         </a>
       </li>
     );

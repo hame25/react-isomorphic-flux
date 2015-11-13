@@ -19,14 +19,13 @@ class App extends Base {
     return (
       <div>
         <header>
-          <GlobalHeader data={this.props.data.app.search}/>
+          <GlobalHeader data={this.props.data.getIn(['app', 'search'])}/>
         </header>
         <section>
-          {/* Render Main Content */}
           <RouteHandler {...this.props}/>
         </section>
       </div>
-    );
+    ); 
   }
 }
 

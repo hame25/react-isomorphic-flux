@@ -13,6 +13,9 @@ class Store extends EventEmitter {
 
     state = state || {};
 
+    // Turn state to immutable
+    this.state = Immutable.fromJS(state);
+
     // Register handlers
     dispatcher.register(function (action) {
        switch(action.actionType) {
@@ -22,8 +25,7 @@ class Store extends EventEmitter {
       }
     });
 
-    // Turn state to immutable
-    this.state = Immutable.fromJS(state);
+
   }
 
   getState () {
@@ -34,8 +36,10 @@ class Store extends EventEmitter {
 
     let immutableItem = Immutable.fromJS(data);
 
-    let y = this.state.mergeDeep(immutableItem).toJS();
-    this.state = Immutable.fromJS(y);
+    //let y = this.state.mergeDeep(immutableItem).toJS();
+    let newState = this.state.mergeDeep(immutableItem);
+    //this.state = Immutable.fromJS(y);
+    this.state = newState;
    
     this.emit(CHANGE_EVENT);
   }

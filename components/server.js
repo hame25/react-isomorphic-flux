@@ -4,7 +4,7 @@ import React from 'react';
 import Router from 'react-router';
 import routes from '../routes'
 import Immutable from 'immutable';
-import Cursor from 'immutable/contrib/cursor';
+//import Cursor from 'immutable/contrib/cursor';
 import fetchData from '../utils/fetchData';
 import config from '../config';
 import fetch from 'isomorphic-fetch';
@@ -35,6 +35,8 @@ export default () => {
           getGlobalData().then((appData) => {
 
             data.app = appData;
+
+            data = Immutable.fromJS(data);
 
             //AppStore.setInitialData(data);
 
