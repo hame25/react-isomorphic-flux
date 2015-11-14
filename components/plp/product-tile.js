@@ -23,11 +23,11 @@ class ProductTile extends Base {
 
     return (
         <li>
-          <h3>{item.name}</h3>
-          <img src={item.image.url} />
-          <p className='price'>£{item.price}</p>
+          <h3>{item.get('name')}</h3>
+          <img src={item.getIn(['image', 'url'])} />
+          <p className='price'>£{item.get('price')}</p>
           <button onClick={this.onAddToBasket.bind(this)}>Add to basket</button>
-          <p>{item.qtyInBasket} in basket</p>
+          <p>{item.get('qtyInBasket')} in basket</p>
         </li>
     );
   }

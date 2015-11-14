@@ -23,7 +23,7 @@ class plp extends Base {
     return (
       <div>
         <div className='plp-page'>
-          <ProductList data={this.props.data.plp.products}/>
+          <ProductList data={this.props.data.getIn(['plp', 'products'])}/>
         </div>
       </div>
     ); 
