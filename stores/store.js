@@ -35,10 +35,8 @@ class Store extends EventEmitter {
   loadData (data) {
 
     let immutableItem = Immutable.fromJS(data);
-
-    //let y = this.state.mergeDeep(immutableItem).toJS();
     let newState = this.state.mergeDeep(immutableItem);
-    //this.state = Immutable.fromJS(y);
+    
     this.state = newState;
    
     this.emit(CHANGE_EVENT);

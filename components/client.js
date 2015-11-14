@@ -16,22 +16,18 @@ let data = initialData;
 
 let store = new Store(dispatcher, data);
 
-
-
 // Start the client-side router using only `pushState`
 // with the supplied routes
+// Tidy this up later, can structure better
 
 Router.run(routes, Router.HistoryLocation, function (Handler, req) {
-
-	store.on(CHANGE_EVENT, function () {
-      render();
-   });
 
 	function isEmpty(obj) {
     return Object.keys(obj).length === 0;
   }
 
 	function render() {
+		console.log('Render called');
 		React.render(<Handler data = {store.getState()}/>, content);
 	} 
 
@@ -39,7 +35,6 @@ Router.run(routes, Router.HistoryLocation, function (Handler, req) {
 		if (isEmpty(initialData)) {
 
 			fetchData(req).then((pageData) => {
-		
 				store.loadData(pageData);
 
 			}).catch(() => {
@@ -47,7 +42,14 @@ Router.run(routes, Router.HistoryLocation, function (Handler, req) {
 	      console.log('error');
 	    });
 		} else {
+			//inital setup from server
 			initialData = {};
+
+			//setup listener
+			store.on(CHANGE_EVENT, function () {
+	      render();
+	   	});
+
 			render();
 		}
 	}

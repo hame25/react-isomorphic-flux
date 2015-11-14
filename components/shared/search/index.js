@@ -8,17 +8,17 @@ class Search extends Base {
     this.displayName = 'Search';
   }
 
-  /*onSubmit (e) {
+  onSubmit (e) {
     e.preventDefault();
 
-    let query = this.props.cursor.get('query');
+    let query = this.props.data.get('query');
 
     if(query === '') {
       alert('Empty search!!!!')
     }
   }
 
-  onChange (e) {
+  /*onChange (e) {
     let value = e.target.value;
 
     this.props.cursor.update('query', function () {
@@ -33,7 +33,7 @@ class Search extends Base {
         <form>
           <label>Search</label>
           <input type="input" placeholder="I'm looking for"  defaultValue={this.props.data.get('query')} ref="searchBox"/>
-          <button type="submit" name="submit-search" >Search</button>
+          <button type="submit" name="submit-search"  onClick={this.onSubmit.bind()}>Search</button>
         </form>
       </div>  
     );
