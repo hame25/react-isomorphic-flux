@@ -3,10 +3,9 @@ import React from 'react';
 import Router from 'react-router';
 import routes from '../routes';
 import fetchData from '../utils/fetchData';
-
-//import AppStore from '../stores/';
-import Store from '../stores/store';
+import Store from '../stores/store';;
 import dispatcher from '../dispatcher/';
+import actions from '../actions'
 
 const CHANGE_EVENT = 'change';
 
@@ -27,7 +26,6 @@ Router.run(routes, Router.HistoryLocation, function (Handler, req) {
   }
 
 	function render() {
-		console.log('Render called');
 		React.render(<Handler data = {store.getState()}/>, content);
 	} 
 
@@ -35,7 +33,7 @@ Router.run(routes, Router.HistoryLocation, function (Handler, req) {
 		if (isEmpty(initialData)) {
 
 			fetchData(req).then((pageData) => {
-				store.loadData(pageData);
+				actions.load(pageData);
 
 			}).catch(() => {
 	      //window.location = `/500.html`;

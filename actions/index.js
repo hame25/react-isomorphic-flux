@@ -1,9 +1,10 @@
 import Dispatcher from '../dispatcher/';
 
 let appActions = {
-	load () {
+	load (data) {
 		Dispatcher.handleViewAction({
-			actionType: 'LOAD_DATA'
+			actionType: 'LOAD_DATA',
+			data: data
 		});
 	}
 };

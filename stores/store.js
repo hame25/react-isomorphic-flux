@@ -16,16 +16,15 @@ class Store extends EventEmitter {
     // Turn state to immutable
     this.state = Immutable.fromJS(state);
 
-    // Register handlers
-    dispatcher.register(function (action) {
-       switch(action.actionType) {
+    dispatcher.register(function (payload) {
+      let action = payload.action
+
+      switch(action.actionType) {
         case 'LOAD_DATA':
-        self.loadData()
-        break;
-      }
+          self.loadData(action.data)
+          break;
+      } 
     });
-
-
   }
 
   getState () {
