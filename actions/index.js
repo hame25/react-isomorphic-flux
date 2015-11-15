@@ -6,6 +6,13 @@ let appActions = {
 			actionType: 'LOAD_DATA',
 			data: data
 		});
+	},
+
+	updateSearchQuery (query) {
+		Dispatcher.handleViewAction({
+			actionType: 'UPDATE_SEARCH_QUERY',
+			query: query
+		});
 	}
 };
 

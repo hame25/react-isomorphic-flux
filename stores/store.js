@@ -21,7 +21,10 @@ class Store extends EventEmitter {
 
       switch(action.actionType) {
         case 'LOAD_DATA':
-          self.loadData(action.data)
+          self.loadData(action.data);
+          break;
+        case 'UPDATE_SEARCH_QUERY':
+          self.updateSearchQuery(action.query);
           break;
       } 
     });
@@ -32,12 +35,20 @@ class Store extends EventEmitter {
   }
 
   loadData (data) {
-
     let immutableItem = Immutable.fromJS(data);
-    let newState = this.state.mergeDeep(immutableItem);
     
-    this.state = newState;
+    this.state = this.state.mergeDeep(immutableItem);
    
+    this.emit(CHANGE_EVENT);
+  }
+
+  updateSearchQuery (query) {
+    this.state = this.state.updateIn(['app', 'search'], () => {
+      return Immutable.fromJS({
+        query: query
+      });
+    });
+
     this.emit(CHANGE_EVENT);
   }
 }

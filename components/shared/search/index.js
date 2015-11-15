@@ -1,5 +1,6 @@
 import React from 'react';
 import Base from '../../base';
+import actions from '../../../actions';
 
 class Search extends Base {
 
@@ -18,13 +19,11 @@ class Search extends Base {
     }
   }
 
-  /*onChange (e) {
+  onChange (e) {
     let value = e.target.value;
 
-    this.props.cursor.update('query', function () {
-      return value;
-    });
-  }*/
+    actions.updateSearchQuery(value);
+  }
 
   render () {
 
@@ -32,8 +31,9 @@ class Search extends Base {
       <div id="global-search">
         <form>
           <label>Search</label>
-          <input type="input" placeholder="I'm looking for"  defaultValue={this.props.data.get('query')} ref="searchBox"/>
-          <button type="submit" name="submit-search"  onClick={this.onSubmit.bind()}>Search</button>
+          <input type="input" placeholder="I'm looking for"  defaultValue={this.props.data.get('query')} onChange={this.onChange.bind(this)}
+           ref="searchBox"/>
+          <button type="submit" name="submit-search"  onClick={this.onSubmit.bind(this)}>Search</button>
         </form>
       </div>  
     );
