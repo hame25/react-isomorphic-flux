@@ -1,5 +1,6 @@
 import React from 'react';
 import Base from '../base';
+import actions from '../../actions';
 
 class ProductTile extends Base {
 
@@ -9,13 +10,8 @@ class ProductTile extends Base {
   }
 
   onAddToBasket () {
-    /*let qty = this.props.cursor.get('qtyInBasket');
-
-    this.props.cursor.update('qtyInBasket', function () {
-      let newQty = parseInt(qty + 1)
-      return newQty;
-    });*/
-    alert('add clicked');
+    let productId = this.props.data.get('id');
+    actions.addToBasket(productId, 1 );
   }
 
   render () {

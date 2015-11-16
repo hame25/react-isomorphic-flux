@@ -6,6 +6,7 @@ router.get('/', (req, res) => {
   res.status(200).json({
   	products: [
   		{
+        id: 1,
   			name: 'Battlefield 4: Standard Edition (PS3)', 
   			price: '5.00',
   			image: {
@@ -15,6 +16,7 @@ router.get('/', (req, res) => {
   			inStock: true
   		},
   		{
+        id: 1234,
   			name: 'FIFA 16 PS3', 
   			price: '40.00',
   			image: {
@@ -24,6 +26,7 @@ router.get('/', (req, res) => {
   			inStock: true
   		},
   		{
+        id: 3,
   			name: 'Call of Duty: Black Ops 3 PS3',
   			price: '40.00',
   			image: {

@@ -13,6 +13,14 @@ let appActions = {
 			actionType: 'UPDATE_SEARCH_QUERY',
 			query: query
 		});
+	},
+
+	addToBasket (productId, qty) {
+		Dispatcher.handleViewAction({
+			actionType: 'ADD_TO_BASKET',
+			productId: productId,
+			qty: qty
+		});
 	}
 };
 

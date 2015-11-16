@@ -26,6 +26,9 @@ class Store extends EventEmitter {
         case 'UPDATE_SEARCH_QUERY':
           self.updateSearchQuery(action.query);
           break;
+        case 'ADD_TO_BASKET':
+          self.updateQtyInBasket(action.productId, action.qty);
+          break;
       } 
     });
   }
@@ -34,19 +37,41 @@ class Store extends EventEmitter {
     return this.state;
   }
 
+  //load a pages specific data
   loadData (data) {
     let immutableItem = Immutable.fromJS(data);
-    
+
     this.state = this.state.mergeDeep(immutableItem);
    
     this.emit(CHANGE_EVENT);
   }
 
+  //update the search query keyword
   updateSearchQuery (query) {
     this.state = this.state.updateIn(['app', 'search'], () => {
       return Immutable.fromJS({
         query: query
       });
+    });
+
+    this.emit(CHANGE_EVENT);
+  }
+
+  //update a specific items in basket quantity
+  updateQtyInBasket (productId, qty) {
+    let allProducts = this.state.getIn(['plp', 'products']);
+
+    let list = allProducts.update(
+      allProducts.findIndex(function(item) { 
+        return item.get('id') === productId; 
+      }), function(item) {
+        let currentQty = item.get('qtyInBasket');
+        return item.set('qtyInBasket', parseInt(currentQty + qty));
+      }
+    ); 
+
+    this.state = this.state.updateIn(['plp', 'products'], () => {
+      return list
     });
 
     this.emit(CHANGE_EVENT);
