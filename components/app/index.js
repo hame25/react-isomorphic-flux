@@ -8,6 +8,10 @@ import Base from '../base';
 import config from '../../config';
 import url from 'url';
 
+if (process.env.BROWSER) {
+    require('../../assets/styles/_normalize.scss');
+}
+
 class App extends Base {
 
   constructor () {
