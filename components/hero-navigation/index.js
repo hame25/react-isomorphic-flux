@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import NavItem from './nav-item.js';
 import Base from '../base';
 
@@ -24,5 +24,7 @@ class HeroNav extends Base {
     );
   }
 }
+
+HeroNav.propTypes = {data: PropTypes.object.isRequired};  
 
 export default HeroNav;
