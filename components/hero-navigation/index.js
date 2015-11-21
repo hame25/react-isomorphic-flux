@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import NavItem from './nav-item.js';
+import NavList from './nav-list.js';
 import Base from '../base';
 
 class HeroNav extends Base {
@@ -15,11 +15,7 @@ class HeroNav extends Base {
     return (
       <div id="hero-nav">
         <h2>Shop by department</h2>
-        <ul>
-        {taxonomy.map((item, i) => 
-          <NavItem key={i} item={item}/>
-        )}
-        </ul>
+        <NavList data={taxonomy} />
       </div>  
     );
   }
