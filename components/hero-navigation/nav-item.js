@@ -15,7 +15,7 @@ class NavItem extends Base {
 
     return (
       <li key={this.props.key}>
-        <a href={item.get('url')}>
+        <a href={'/plp/' + item.get('id')}>
           {item.get('name')}
         </a>
         {taxonomy ? <NavList data={taxonomy}/> : ''}
