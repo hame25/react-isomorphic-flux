@@ -10,7 +10,7 @@ let fetchData = module.exports = (routerState) => {
 
   }).reduce((promises, route) => {
 
-  		promises[route.name] = route.handler.fetchData();
+  		promises[route.name] = route.handler.fetchData(params);
     	return promises;
 
   }, {}));

@@ -10,7 +10,10 @@ let DefaultRoute = Router.DefaultRoute;
 let routes = (
 	<Route path="/" name="app" handler={App}>
     	<DefaultRoute name="home" handler={Home}/>
-    	<Route name="plp" handler={PLP}/>
+    	<Route name="plp" path="plp" handler={PLP}>
+    		<Route path=":id" component={PLP}/>
+    	</Route>
+
     	<Route name="page-3" handler={PLP}/>
     	<Route name="page-4" handler={PLP}/>
   	</Route>

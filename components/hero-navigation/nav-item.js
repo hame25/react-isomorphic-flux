@@ -1,6 +1,9 @@
 import React from 'react';
+import Router from 'react-router';
 import Base from '../base';
 import NavList from './nav-list.js';
+
+let Link = Router.Link;
 
 class NavItem extends Base {
 
@@ -15,9 +18,9 @@ class NavItem extends Base {
 
     return (
       <li key={this.props.key}>
-        <a href={'/plp/' + item.get('id')}>
+        <Link to={'/plp/' + item.get('id')}>
           {item.get('name')}
-        </a>
+        </Link>
         {taxonomy ? <NavList data={taxonomy}/> : ''}
       </li>
     );

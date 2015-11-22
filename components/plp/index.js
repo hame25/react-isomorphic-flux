@@ -30,8 +30,10 @@ class plp extends Base {
   }
 }
 
-plp.fetchData = function(){
-  return fetch(url.format(config.services.plp))
+plp.fetchData = function(params){
+  let listingUrl = url.format(config.services.plp) + '/' + params.id;
+
+  return fetch(listingUrl)
     .then(function(response) {
       return response.json();
     }).then(function(productData) {
